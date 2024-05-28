@@ -1,7 +1,7 @@
 resource "aws_vpc" "custom_vpc" {
   cidr_block = var.cidr_vpc
   tags = {
-    name = "demo-vpc"
+    Name = "demo-vpc"
   }
 }
 
@@ -11,7 +11,7 @@ resource "aws_subnet" "sub1" {
   availability_zone       = var.sub1_zone
   map_public_ip_on_launch = true
   tags = {
-    name = "demo-sub1"
+    Name = "demo-sub1"
   }
 }
 
@@ -21,14 +21,14 @@ resource "aws_subnet" "sub2" {
   availability_zone       = var.sub2_zone
   map_public_ip_on_launch = true
   tags = {
-    name = "demo-sub2"
+    Name = "demo-sub2"
   }
 }
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.custom_vpc.id
   tags = {
-    name = "demo-igw"
+    Name = "demo-igw"
   }
 
 }
@@ -42,7 +42,7 @@ resource "aws_route_table" "RT" {
   }
 
   tags = {
-    name = "demo-RT"
+    Name = "demo-RT"
   }
 
 }
@@ -67,7 +67,7 @@ resource "aws_lb" "mylb" {
   security_groups = [aws_security_group.mysg.id]
   subnets         = [aws_subnet.sub1.id, aws_subnet.sub2.id]
   tags = {
-    name = "my-lb"
+    Name = "my-lb"
   }
 
 }
